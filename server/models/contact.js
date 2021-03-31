@@ -27,68 +27,68 @@ function Contact(args) {
      *
      * @type {string}
      */
-    this.Title = null;
+    this.Title = args.Title;
     /**
      * Last name of the contact, this field is mandatory.
      *
      * @type {string}
      */
-    this.Last_Name = null;
+    this.Last_Name = args.Last_Name;
     /**
      * Specify the birthday of the contact to send greetings for a better relationship.
      *
      * @type {Date}
      */
-    this.Date_Of_Birth = null;
+    this.Date_Of_Birth = args.Date_Of_Birth;
     /**
      * Last user login datetime
      *
      * @type {Date}
      */
-    this.Last_Login = null;
+    this.Last_Login = args.Last_Login;
     /**
      * Phone number of the contact.
      *
      * @type {string}
      */
-    this.Phone = null;
+    this.Phone = args.Phone;
     /**
      * Modile number of the contact.
      *
      * @type {string}
      */
-    this.Mobile = null;
+    this.Mobile = args.Mobile;
     /**
      * Fax number of the contact.
      *
      * @type {string}
      */
-    this.Fax = null;
+    this.Fax = args.Fax;
     /**
      * Email address of the contact.
      *
      * @type {string}
      */
-    this.Email = null;
+    this.Email = args.Email;
     /**
      * Secondary email address of the contact.
      *
      * @type {string}
      */
-    this.Secondary_Email = null;
+    this.Secondary_Email = args.Secondary_Email;
     /**
      * Skype ID of the contact. Currently skype ID
      * can be in the range of 6 to 32 characters.
      *
      * @type {string}
      */
-    this.Skype_ID = null;
+    this.Skype_ID = args.Skype_ID;
     /**
      * Other details about the contact.
      *
      * @type {string}
      */
-    this.Description = null;
+    this.Description = args.Description;
     /**
      * Specify the primary address of the contact.
      *
@@ -99,10 +99,10 @@ function Contact(args) {
      *     @type {string}
      *     @type {string}
      */
-    this.Street = null;
-    this.City = null;
-    this.Zip_Code = null;
-    this.Country = null;
+    this.Street = args.Street;
+    this.City = args.City;
+    this.Zip_Code = args.Zip_Code;
+    this.Country = args.Country;
 }
 
 module.exports = Contact;

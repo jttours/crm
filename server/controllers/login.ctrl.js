@@ -17,6 +17,7 @@ const users = [
 ]
 
 router.post('/', function (req, res) {
+    console.log("starting the login proces.....")
     const { user, pass } = req.body;
     const theUser = users.find(u => u.name === user && u.pass === pass);
     if (theUser) {
