@@ -121,35 +121,73 @@ router.post('/', function (req, res) {
 
 router.put('/:id', function (req, res) {
     const id = +req.params.id;
+
+    fs.readFile('./db/contacts.json', (err, data) => {
+        if (err){
+            console.log('the error is - ',err);
+            return
+        } else {
+            contactsDb = JSON.parse(data);
+        //console.log ("contact owner - ", req.body.Contact_Owner);
+            const contacts = contactsDb.filter(c => c.Contact_Owner === req.body.Contact_Owner);
+    
+            if (contacts.find(con => con.Contact_Id === id)) {
+                const contact = contacts.find(con => con.Contact_Id === id);
+                const newContact = new Contact({
+                Contact_Id: id,
+                Contact_Owner: req.User_Id,
+                ...req.body
+                });
+                contactsDb.splice(contactsDb.indexOf(contact), 1, newContact);
+                var jsonContent = JSON.stringify(contactsDb);
+                fs.writeFile("./db/contacts.json", jsonContent, function(err) {
+                    if (err) {
+                        console.log("An error occured while writing JSON Object to File.");
+                        return console.log(err);
+                    }
+                    console.log("JSON file has been updated.");
+                });
+                res.status(201).send(newContact);
+
+            } else {
+                return res.send("Contact does not exist or belongs to another user");
+        }   
+        }
+    
+    });
+});
+
+router.delete('/:id', function (req, res) {
+    const id = +req.params.id;
+
     fs.readFile('./db/contacts.json', function readFileCallback(err, data) {
         contactsDb = JSON.parse(data);
-        if (contactsDb.find(c => c.id === phone.id)) {
-            const _phone = obj.phones.find(p => p.id === phone.id);
-            let newPhone = Object.assign(_phone, phone);
-            obj.phones.splice(obj.phones.indexOf(_phone), 1, newPhone);
+        //console.log('contactsDb is - ',contactsDb);
+        const contacts = contactsDb.filter(c => c.Contact_Owner === req.body.Contact_Owner);
+        //console.log("CONTACTS - ",contacts);
 
-            var jsonContent = JSON.stringify(obj);
-
-            fs.writeFile("phones.json", jsonContent, function(err) {
+        
+        if (contacts.find(con => con.Contact_Id === id)) {
+            const contact = contacts.find(con => con.Contact_Id === id);
+            console.log("the contact to delete is - ",contact);
+            contactsDb.splice(contactsDb.indexOf(contact), 1);
+            var jsonContent = JSON.stringify(contactsDb);
+            
+            
+            fs.writeFile('./db/contacts.json', jsonContent, function(err) {
                 if (err) {
                     console.log("An error occured while writing JSON Object to File.");
                     return console.log(err);
                 }
-
-                console.log("JSON file has been saved.");
-                //console.log(obj);
+    
+                console.log("JSON file has been deleted.");
+                res.status(201).send("contact deleted");
+                
             });
-
         } else {
-            console.log('cannot update, phone does not exist');
-            return callback('phone does not exist');
-        }
-    })
-
-
-
-
-    callback(null, true);
+            return res.send("Contact does not exist or belongs to another user");
+            }      
+    });
 });
 
 
