@@ -39,7 +39,7 @@ router.get('/', function (req, res) {
         } else {
             contactsDb = JSON.parse(data);
     const contacts = contactsDb.filter(c => c.Contact_Owner === req.body.Contact_Owner);
-    return res.send(contacts);
+    return res.send(contactsDb);
 }
 });
 });
