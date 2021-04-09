@@ -1,8 +1,7 @@
 import { Label, Menu, Grid } from 'semantic-ui-react';
-import { BrowserRouter as Switch, Route } from "react-router-dom";
-import Settings from './Settings';
-import Accounts from './Accounts';
-import Contacts from './contacts';
+// import Settings from './Settings';
+// import Accounts from './Accounts';
+// import Contacts from './contacts';
 
 
 

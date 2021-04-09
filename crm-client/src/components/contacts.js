@@ -1,5 +1,6 @@
 import  { useState,useEffect } from 'react';
-import { Label, Menu, Grid, Table, Button } from 'semantic-ui-react';
+import { Grid, Table, Button } from 'semantic-ui-react';
+import { useHistory } from 'react-router-dom'; 
 
 
 function Contacts() {
@@ -17,7 +18,13 @@ function Contacts() {
         }
     }).then(res => res.json().then(Jres => setCurrentContacts(Jres)))
     //console.log('After the fetch Jrse is - ',Jres);
-    }, [])
+    }, []);
+
+    let history = useHistory();
+
+    function goToCreateContact() {
+      history.push('/createContact');
+    };
 
     
 
@@ -54,7 +61,7 @@ function Contacts() {
 
     
   </Table>
-  <button className="ui fluid button">Create Contact</button>
+  <button className="ui fluid button" onClick={goToCreateContact}>Create Contact</button>
       </Grid.Column>
     );
 }
