@@ -26,6 +26,10 @@ function Contacts() {
       history.push('/createContact');
     };
 
+    function goToViewContact() {
+      history.push('/viewContact');
+    };
+
     
 
     console.log('the list of contacts from the function are - ', currentContacts);
@@ -51,7 +55,7 @@ function Contacts() {
         <Table.Cell>{c.First_Name}</Table.Cell>
         <Table.Cell>{c.Last_Name}</Table.Cell>
         <Table.Cell>{c.Title}</Table.Cell>
-        <Table.Cell><Button basic inverted>
+        <Table.Cell><Button basic inverted onClick={goToViewContact}>
         Details
       </Button></Table.Cell>
       </Table.Row>)}

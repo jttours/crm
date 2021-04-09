@@ -1,13 +1,16 @@
 import 'semantic-ui-css/semantic.min.css';
 import { Grid } from 'semantic-ui-react';
 import { BrowserRouter as Switch, Route } from "react-router-dom";
+import Login from './components/login';
+import Navigate from './components/Navigate';
+import ViewContact from './components/ViewContact';
 import Settings from './components/Settings';
 import Accounts from './components/Accounts';
 import Contacts from './components/contacts';
 import CreateContact from './components/CreateContact';
 
-import Login from './components/login';
-import Navigate from './components/Navigate';
+
+
 
 function App() {
     return (
@@ -30,6 +33,9 @@ function App() {
         </Route>
         <Route path="/createContact">
           <CreateContact />
+        </Route>
+        <Route path="/viewContact">
+          <ViewContact />
         </Route>
       </Switch>
             </Grid.Column>
