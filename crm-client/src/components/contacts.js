@@ -1,24 +1,12 @@
-import  { useState,useEffect } from 'react';
+//import  { useState } from 'react';
 import { Grid, Table, Button } from 'semantic-ui-react';
-import { useHistory } from 'react-router-dom'; 
+import { useHistory } from 'react-router-dom';
+import { connect } from 'react-redux';
+//import { getContacts, contactsReceived } from '../ducks/actions';
 
 
-function Contacts() {
-
-    const [currentContacts, setCurrentContacts] = useState([]);
-
-   //setCurrentContacts([...currentContacts])
-
-    useEffect (() => {
-    fetch('http://localhost:14700/contact', {
-        method: 'GET',
-        headers: {
-            'Authorization': 'Bearer ' + window.localStorage.getItem('token'),
-            'Content-type': 'application/json'
-        }
-    }).then(res => res.json().then(Jres => setCurrentContacts(Jres)))
-    //console.log('After the fetch Jrse is - ',Jres);
-    }, []);
+function Contacts(props) {
+    //const [contactId,setContactId]= useState();
 
     let history = useHistory();
 
@@ -28,11 +16,9 @@ function Contacts() {
 
     function goToViewContact() {
       history.push('/viewContact');
+      // setContactId = e.target.value;
+      // console.log('the id is -',setContactId);
     };
-
-    
-
-    console.log('the list of contacts from the function are - ', currentContacts);
     
 
     return (
@@ -49,13 +35,13 @@ function Contacts() {
     </Table.Header>
 
     <Table.Body>
-        
-        {currentContacts.map((c,i) =><Table.Row key={c.Contact_Id}>
+        {console.log('props are - ', props)}
+        {props.contactsList.map((c) =><Table.Row key={c.Contact_Id}>
         <Table.Cell>{c.Contact_Id}</Table.Cell>
         <Table.Cell>{c.First_Name}</Table.Cell>
         <Table.Cell>{c.Last_Name}</Table.Cell>
         <Table.Cell>{c.Title}</Table.Cell>
-        <Table.Cell><Button basic inverted onClick={goToViewContact}>
+        <Table.Cell><Button basic inverted value= {c.Contact_Id} onClick={goToViewContact}>
         Details
       </Button></Table.Cell>
       </Table.Row>)}
@@ -70,4 +56,17 @@ function Contacts() {
     );
 }
 
-export default Contacts;
+const mapStateToProps = state => 
+  ({
+  contactsList: state 
+})
+
+// const mapDispatchToProps = dispatch => {
+//   return {
+//     receiveContacts: contacts => {
+//       dispatch(getContacts());
+//     }
+//   };
+// };
+
+export default connect(mapStateToProps)(Contacts);

@@ -7,7 +7,6 @@ import { Label, Menu, Grid } from 'semantic-ui-react';
 
 function Navigate() {
 
-
     const handleItemClick = (e, { name }) => ({ activeItem: name })
 
 
@@ -55,4 +54,4 @@ function Navigate() {
     )
 }
 
-export default Navigate
+export default Navigate;

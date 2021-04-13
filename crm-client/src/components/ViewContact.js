@@ -1,4 +1,5 @@
 import {  Form, Dropdown, Button } from 'semantic-ui-react';
+// import { useLocation } from "react-router-dom";
 
 const countryOptions = [
     { key: 'af', value: 'af', flag: 'af', text: 'Afghanistan' },
@@ -28,6 +29,11 @@ const countryOptions = [
 
 
 function ViewContact() {
+  // const location = useLocation();
+
+  // console.log( 'the transferred id is - ' ,location.pathname);
+
+
     return (
             <Form>
         <Form.Group unstackable widths={2}>

@@ -1,4 +1,6 @@
 import 'semantic-ui-css/semantic.min.css';
+import { Provider } from 'react-redux';
+import store from '../src/ducks/store';
 import { Grid } from 'semantic-ui-react';
 import { BrowserRouter as Switch, Route } from "react-router-dom";
 import Login from './components/login';
@@ -12,8 +14,10 @@ import CreateContact from './components/CreateContact';
 
 
 
+
 function App() {
     return (
+      <Provider store = {store}>
         <Grid celled>
         <Login />
            <Grid.Row>
@@ -41,6 +45,7 @@ function App() {
             </Grid.Column>
             </Grid.Row>
         </Grid>
+        </Provider>
     );
 }
 
