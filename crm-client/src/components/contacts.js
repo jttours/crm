@@ -14,7 +14,7 @@ function Contacts(props) {
       history.push('/createContact');
     };
 
-    function goToViewContact() {
+    function goToViewContact(e) {
       history.push('/viewContact');
       // setContactId = e.target.value;
       // console.log('the id is -',setContactId);
