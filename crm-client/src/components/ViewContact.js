@@ -1,5 +1,8 @@
 import {  Form, Dropdown, Button } from 'semantic-ui-react';
+import { connect } from 'react-redux';
+import { contactByIdReceived } from '../ducks/actions';
 // import { useLocation } from "react-router-dom";
+//import store from '../src/ducks/store';
 
 const countryOptions = [
     { key: 'af', value: 'af', flag: 'af', text: 'Afghanistan' },
@@ -28,7 +31,7 @@ const countryOptions = [
   ];
 
 
-function ViewContact() {
+function ViewContact(props) {
   // const location = useLocation();
 
   // console.log( 'the transferred id is - ' ,location.pathname);
@@ -36,6 +39,7 @@ function ViewContact() {
 
     return (
             <Form>
+            {console.log('proppppps - ',props)}
         <Form.Group unstackable widths={2}>
           <Form.Input placeholder='First name' />
           <Form.Input placeholder='Fax' />
@@ -77,4 +81,10 @@ function ViewContact() {
     )
 }
 
-export default ViewContact;
+const mapStateToProps = state => 
+  ({
+    
+    contactById: state 
+})
+
+export default connect(mapStateToProps)(ViewContact);

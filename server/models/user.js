@@ -1,6 +1,12 @@
 
 function User() {
     /**
+     * The user id that own the contact
+     *
+     * @type {int}
+     */
+    this.User_Owner = null;
+    /**
      * Specify the user id.
      *
      * @type {int}
@@ -15,7 +21,7 @@ function User() {
     /**
      * User's role.
      *
-     * @type {string}
+     * @type {('Admin' | 'Member')}
      */
     this.role = null;
     /**
@@ -30,6 +36,11 @@ function User() {
      * @type {('Active' | 'Deleted' | 'Freezed')}
      */
     this.status = null;
+    /**
+     * User hashed password
+     * @type {string}
+     */
+    this.Password = null;
 }
 
 module.exports = User;

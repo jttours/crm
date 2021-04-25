@@ -11,15 +11,19 @@ const router = express.Router();
 
 router.get('/:id', function (req, res) {
     const id = +req.params.id;
+    console.log('the id from the get by id is - ',id);
     fs.readFile('./db/contacts.json', (err, data) => {
         if (err){
             console.log('the error is - ',err);
             return
         } else {
             contactsDb = JSON.parse(data);
-        //console.log ("contact owner - ", req.body.Contact_Owner);
+            console.log('the contacts before any filtering are - ', contactsDb);
+        console.log ("contact owner - ", req.body.Contact_Owner);
     const contacts = contactsDb.filter(c => c.Contact_Owner === req.body.Contact_Owner);
+    console.log('the contacSSSSSSSSS - ',contacts);
     const contact = contacts.filter(con => con.Contact_Id === id);
+    console.log('the contact is - ',contact);
     if (contact.length >0) {
         return res.send(contact);
     } else {
@@ -32,6 +36,7 @@ router.get('/:id', function (req, res) {
 
 
 router.get('/', function (req, res) {
+    console.log('request params get only',req.params);
     fs.readFile('./db/contacts.json', (err, data) => {
         if (err){
             console.log('the error is - ',err);

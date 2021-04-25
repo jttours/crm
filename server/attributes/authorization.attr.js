@@ -3,6 +3,7 @@ const jwt = require('jsonwebtoken');
 /* userToken { User_Id: number } */
 
 module.exports = function (req, res, next) {
+    console.log('the request here that might be causing the error is - ',req.headers.authorization)
     const [tokenType, userToken] = req.headers.authorization.split(" ");
     if (tokenType === 'Bearer') {
         try {

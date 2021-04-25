@@ -9,7 +9,7 @@ import reportWebVitals from './reportWebVitals';
 
 
 // const unsubscribe = store.subscribe(()=> {
-//   console.log("sore changed - ", store.getState());
+//   console.log("store changed - ", store.getState());
 // });
 
 // store.dispatch (contactsReceived());
